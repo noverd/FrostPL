@@ -1,0 +1,2 @@
+типа  python3 frostint.py filename.frst
+можно example.frst

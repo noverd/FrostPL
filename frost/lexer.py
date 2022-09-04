@@ -1,5 +1,4 @@
-from ltypes import Func, FuncN
-from lerrno import *
+from .ltypes import Func, FuncN
 
 
 def lex(code: tuple, env):

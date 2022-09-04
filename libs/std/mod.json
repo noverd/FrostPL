@@ -1,0 +1,14 @@
+{
+  "name": "STD",
+  "imports": {
+    "mt":"methods.py",
+    "pt":"partypes.py",
+    "tp":"types.py"
+  },
+  "env": {
+      "types": "tp.types",
+      "funcs": "mt.funcs",
+      "runfuncs": "mt.runfuncs",
+      "parsetype": "pt.partp"
+  }
+}

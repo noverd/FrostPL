@@ -1,4 +1,4 @@
-from ltypes import TypeN
+from frost.ltypes import TypeN, ParseFunc
 
 
 def var_typer(arg: TypeN, env):
@@ -33,3 +33,10 @@ def zombie_string_typer(arg: TypeN, env):
 
     s = TypeN(arg.type, strf)
     return s
+
+
+partp = [
+    ParseFunc("Var", var_typer),
+    ParseFunc("String", string_typer),
+    ParseFunc("StringZ", zombie_string_typer),
+]

@@ -1,6 +1,6 @@
-from lexer import lex
-from ltypes import FuncN, TypeN
-from lerrno import *
+from .lexer import lex
+from .ltypes import FuncN, TypeN
+from .lerrno import *
 
 ic = 0
 

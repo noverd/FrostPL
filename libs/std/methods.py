@@ -1,5 +1,19 @@
-from lerrno import *
-from ltypes import Type
+from frost.lerrno import *
+from frost.ltypes import Type, Func, RunPythonFunc
+
+funcs = [
+    Func("add", ("Number", "Number", "String")),
+    Func("sub", ("Number", "Number", "String")),
+    Func("mul", ("Number", "Number", "String")),
+    Func("div", ("Number", "Number", "String")),
+    Func("tdef", ("String", "String", "String")),
+    Func("var", ("String", "String", "Any")),
+    Func("out", ("String",)),
+    Func("eval", ("String", "String", "String")),
+    Func("jump_if", ("String", "Int")),
+    Func("jump", ("Int",)),
+
+]
 
 
 def add(args: tuple, env):
@@ -105,3 +119,17 @@ def typedef(args: tuple, env):
     except:
         raise_err(Error(f"tdef error", at_format(env.ic, env.fl, env.cd)))
 
+
+runfuncs = [
+    RunPythonFunc(add, "add"),
+    RunPythonFunc(sub, "sub"),
+    RunPythonFunc(mul, "mul"),
+    RunPythonFunc(div, "div"),
+    RunPythonFunc(var, "var"),
+    RunPythonFunc(typedef, "tdef"),
+    RunPythonFunc(frost_print, "out"),
+    RunPythonFunc(eval_exp, "eval"),
+    RunPythonFunc(jump_if, "jump_if"),
+    RunPythonFunc(jump, "jump"),
+
+]
