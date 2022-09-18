@@ -1,11 +1,3 @@
-out "EXAMPLE_PROGRAM"
-eval "1+1" "Int" "OU"
-out z"EVAL:'1+1'={OU}"
-out "LOOP"
-var "C" "Int" "1"
-add C 1 "C"
-out z"LOOPPING:{C}"
-jump_if z"10>{C}" 6
-out "LOOP\sEND"
-out "START_METH_COOKING..."
-out "METH_IS_READY!WANT_TO_TRY\s-\srate\sFROSTPL!"
+out "HelloWorld"; выводит HelloWorld
+out "SPACE\sSYMBOL"; осторожно, пробелы в строке плохо работают, вызывают ошибку, используйте вместо них /s
+add

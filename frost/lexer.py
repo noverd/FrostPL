@@ -4,8 +4,7 @@ from .ltypes import Func, FuncN
 def lex(code: tuple, env):
     cd = []
     for i in code:
-        for x in i.split(";"):
-            cd.append(x)
+        cd.append(i.split(";")[0])
     funcl = []
     for i in cd:
         cds = i.split()
