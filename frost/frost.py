@@ -14,7 +14,7 @@ class Runner:
 
     def set_var(self, varname: str, typename: str, value: str):
         for i in self.env["types"]:
-            if typename == i.typename or typename == i.typegroup:
+            if typename in [i.typename, i.typegroup]:
                 self.env["vars"][varname] = TypeN(i, value)
                 return
         raise_err(Error(f"var setting error: type {typename} is not defied", at_format(self.ic, self.fl, self.cd)))

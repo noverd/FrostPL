@@ -8,10 +8,7 @@ class Type:
         self.typegroup = typegroup
 
     def check(self, tp: str):
-        if re.fullmatch(self.regxp, tp) is None:
-            return False
-        else:
-            return True
+        return re.fullmatch(self.regxp, tp) is not None
 
     def typen(self, value: str):
         return TypeN(self, value)
@@ -34,16 +31,15 @@ class Func:
 
     def valid(self, com: str, args: list):
         try:
-            if com == self.name:
-                for arg in args:
-                    for typearg in self.argst:
-                        if arg.type.typename != typearg:
-                            if arg.type.typegroup == typearg or typearg == "Any":
-                                continue
-                            else:
-                                return False
-            else:
+            if com != self.name:
                 return False
+            for arg in args:
+                for typearg in self.argst:
+                    if (
+                        arg.type.typename != typearg
+                        and arg.type.typegroup != typearg != "Any"
+                    ):
+                        return False
         except:
             return False
         return True
@@ -80,7 +76,7 @@ class RunFrostFunc:
         for x, i in enumerate(self.args):
             env.env["var"][i] = args[x]
         env.run_code(self.code)
-        for x, i in enumerate(self.args):
+        for i in self.args:
             del env.env["var"][i]
 
 
