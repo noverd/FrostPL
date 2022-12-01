@@ -2,9 +2,7 @@ from .ltypes import Func, FuncN
 
 
 def lex(code: tuple, env):
-    cd = []
-    for i in code:
-        cd.append(i.split(";")[0])
+    cd = [i.split(";")[0] for i in code]
     funcl = []
     for i in cd:
         cds = i.split()
@@ -18,16 +16,11 @@ def lex(code: tuple, env):
                     break
         func_found: bool = False
         for func in env["funcs"]:
-            if func.name == com:
-                if func.valid(com, args):
-                    funcl.append(func.funcn(args))
-                    func_found = True
-                    break
-                else:
-                    continue
+            if func.name == com and func.valid(com, args):
+                funcl.append(func.funcn(args))
+                func_found = True
+                break
         if not func_found:
-            argsty = []
-            for i in args:
-                argsty.append(i.type)
+            argsty = [i.type for i in args]
             funcl.append(FuncN(Func(com, tuple(argsty)), args))
     return funcl

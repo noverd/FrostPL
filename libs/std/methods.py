@@ -117,7 +117,7 @@ def typedef(args: tuple, env):
                 return
         env.env["types"].append(Type(args[0].value, args[1].value, args[2].value))
     except:
-        raise_err(Error(f"tdef error", at_format(env.ic, env.fl, env.cd)))
+        raise_err(Error("tdef error", at_format(env.ic, env.fl, env.cd)))
 
 
 runfuncs = [

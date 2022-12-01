@@ -2,13 +2,11 @@ from frost.ltypes import TypeN, ParseFunc
 
 
 def var_typer(arg: TypeN, env):
-    s = env.get_var(arg.value)
-    return s
+    return env.get_var(arg.value)
 
 
 def string_typer(arg: TypeN, env):
-    s = TypeN(arg.type, arg.value[1:-1])
-    return s
+    return TypeN(arg.type, arg.value[1:-1])
 
 
 def zombie_string_typer(arg: TypeN, env):
@@ -19,20 +17,17 @@ def zombie_string_typer(arg: TypeN, env):
         if i == "{":
             formstr_new.append("")
             formstr = True
-        else:
-            if i == "}":
-                formstr = False
-            else:
-                if formstr:
-                    formstr_new[-1] += i
+        elif i == "}":
+            formstr = False
+        elif formstr:
+            formstr_new[-1] += i
     for x in formstr_new:
         try:
             strf = strf.replace("{" + x + "}", str(env.get_var(x).value))
         except:
             pass
 
-    s = TypeN(arg.type, strf)
-    return s
+    return TypeN(arg.type, strf)
 
 
 partp = [

@@ -30,13 +30,15 @@ def import_from_json(path: str):
     except:
         raise_err(Error("Lib import error: path is not correct", "importing"))
 
-    with open(path + "mod.json") as f:
+    with open(f"{path}mod.json") as f:
         data = json.load(f)
-    imports = {}
-    for imp in data["imports"].keys():
-        imports[imp] = import_file(imp, data["imports"][imp])
+    imports = {
+        imp: import_file(imp, data["imports"][imp])
+        for imp in data["imports"].keys()
+    }
+
     objc = data["env"]
-    for obj in data["env"].keys():
+    for obj in objc.keys():
         if type(objc[obj]) == dict:
             for i in obj.keys():
                 objc[obj][i] = replace_sm(imports, objc[obj][i])
